@@ -1,4 +1,4 @@
-# W100_admin
+# W100-admin
 
 > W100 admin project
 
