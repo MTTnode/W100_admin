@@ -8,6 +8,8 @@ const manage = r => require.ensure([], () => r(require('@/page/manage')), 'manag
 const index = r => require.ensure([], () => r(require('@/page/index')), 'index');
 const banner = r => require.ensure([], () => r(require('@/page/banner')), 'banner');
 const transaction = r => require.ensure([], () => r(require('@/page/transaction')), 'transaction');
+const blacklist = r => require.ensure([], () => r(require('@/page/blacklist')), 'blacklist');
+const whitelist = r => require.ensure([], () => r(require('@/page/whitelist')), 'whitelist');
 
 const routes = [
 	{
@@ -29,6 +31,14 @@ const routes = [
 			path: '/transaction',
 			component: transaction,
 			meta: ['交易对配置'],
+		},{
+			path: '/blacklist',
+			component: blacklist,
+			meta: ['黑名单配置'],
+		},{
+			path: '/whitelist',
+			component: whitelist,
+			meta: ['白名单配置'],
 		}]
 	}
 ]

@@ -6,16 +6,19 @@ const qs = require('qs')
 const instance = axios.create({
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
-    'source': 'Android'
+    'source': 'Android',
+    'token': '2F13D3C9597F4309BC2854F26C27CCD7',
+    'uid': '-1',
+    'ver': '1.0',
   }
 })
 
 export default {
   getStatRequest() {
-    return axios.get(APIPATH.stat);
+    return instance.get(APIPATH.stat);
   },
   getBannerRequest() {
-    return axios.get(APIPATH.banner);
+    return instance.get(APIPATH.banner);
   },
   savebannerRequest(params) {
     return instance.post(APIPATH.saveBanner, qs.stringify(params));
@@ -24,7 +27,7 @@ export default {
     return instance.post(APIPATH.delBanner, qs.stringify(params));
   },
   getTransactRequest() {
-    return axios.get(APIPATH.transact);
+    return instance.get(APIPATH.transact);
   },
   saveTransactRequest(params) {
     return instance.post(APIPATH.saveTransact, qs.stringify(params));
