@@ -4,14 +4,14 @@
   <section class="data_section">
     <h3 class="section_title">添加白名单</h3>
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="账户" prop="id">
-        <el-input style="width:600px;margin-bottom:30px;" v-model="form.id"></el-input>
+      <el-form-item label="账户" prop="uid">
+        <el-input style="width:600px;margin-bottom:30px;" v-model="form.uid"></el-input>
       </el-form-item>
-      <el-form-item label="IP" prop="type">
-        <el-input style="width:600px;margin-bottom:30px;" v-model="form.type"></el-input>
+      <el-form-item label="IP" prop="ip">
+        <el-input style="width:600px;margin-bottom:30px;" v-model="form.ip"></el-input>
       </el-form-item>
-      <el-form-item label="描述" prop="deturl">
-        <el-input style="width:600px;margin-bottom:30px;" v-model="form.deturl"></el-input>
+      <el-form-item label="描述" prop="content">
+        <el-input style="width:600px;margin-bottom:30px;" v-model="form.content"></el-input>
       </el-form-item>
       <el-button type="primary" @click="onSubmit">立即创建</el-button>
       </el-form-item>
@@ -19,15 +19,19 @@
     <!-- 列表 start -->
     <h3 class="section_title">白名单列表</h3>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="id" label="账户" width="100"></el-table-column>
-      <el-table-column prop="type" label="IP" width="100"></el-table-column>
-      <el-table-column prop="imgurl" label="描述"></el-table-column>
+      <el-table-column prop="uid" label="账户" width="100"></el-table-column>
+      <el-table-column prop="ip" label="IP" width="100"></el-table-column>
+      <el-table-column prop="content" label="描述"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <div class="block" style="margin-top:20px;" v-if="parseInt(total/10) > 0">
+      <el-pagination @current-change="handleCurrentChange" :page-size="10" layout="prev, pager, next, jumper" :total="total">
+      </el-pagination>
+    </div>
   </section>
 </div>
 </template>
@@ -39,11 +43,12 @@ import Api from "../api/api.js";
 export default {
   data() {
     return {
+      curPage: 0,
+      total: 0,
       form: {
-        id: "",
-        type: "",
-        deturl: "",
-        imgurl: ""
+        uid: "",
+        ip: "",
+        content: ""
       },
       tableData: []
     };
@@ -59,8 +64,11 @@ export default {
   methods: {
     getList() {
       let _this = this;
-      Api.getBannerRequest().then(function(res) {
+      Api.getWhitelistRequest({
+        curPage: _this.curPage
+      }).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
+          _this.total = res.data.data.total;
           _this.tableData = res.data.data.list;
         }
       }).catch(function(err) {
@@ -69,7 +77,7 @@ export default {
     },
     onSubmit() {
       let _this = this;
-      Api.savebannerRequest(this.form).then(function(res) {
+      Api.saveWhiteRequest(this.form).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
           _this.$message({
             type: "success",
@@ -87,9 +95,6 @@ export default {
         console.log(err);
       });
     },
-    handleClick(val) {
-      Object.assign(this.form, val);
-    },
     delClick(val) {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -97,7 +102,7 @@ export default {
         type: "warning"
       }).then(() => {
         let _this = this;
-        Api.delbannerRequest(val).then(function(res) {
+        Api.delwhiteRequest(val).then(function(res) {
           if (res.status == 200 && res.data.code == 0) {
             _this.getList();
             _this.$message({

@@ -7,4 +7,11 @@ export default {
     delBanner: apiUrl + "/ad/delBanner",    //banner删除
     transact: apiUrl + "/ad/transact",    //transact列表
     saveTransact: apiUrl + "/ad/saveTransact",    //transact保存
+    blacklist: apiUrl + "/ad/blacklist",    //黑名单列表
+    addBlack: apiUrl + "/ad/addBlack",    //添加黑名单
+    delBlack: apiUrl + "/ad/delBlack",    //删除黑名单
+    whitelist: apiUrl + "/ad/whitelist",    //白名单列表
+    addWhite: apiUrl + "/ad/addWhite",    //添加白名单
+    delWhite: apiUrl + "/ad/delWhite",    //删除白名单
+    getDAU: apiUrl + "/ad/getDAU",    //日活图标数据
 }
