@@ -33,7 +33,7 @@ module.exports = {
   devServer: {
     proxy: {
         '/api': {
-          target: 'http://127.0.0.1:7001/', // 代理服务器路径
+          target: 'http://127.0.0.1:7001', // 代理服务器路径
           pathRewrite: {'^/api' : '/'}, // 重写路径
           changeOrigin: true
         }

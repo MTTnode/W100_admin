@@ -2,30 +2,21 @@
 <div>
   <head-top></head-top>
   <section class="data_section">
-    <h3 class="section_title">添加白名单</h3>
+    <h3 class="section_title">添加用户</h3>
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="账户" prop="uid">
+      <el-form-item label="用户名" prop="uid">
         <el-input style="width:600px;margin-bottom:30px;" v-model="form.uid"></el-input>
       </el-form-item>
-      <el-form-item label="IP" prop="ip">
+      <el-form-item label="角色" prop="ip">
         <el-input style="width:600px;margin-bottom:30px;" v-model="form.ip"></el-input>
       </el-form-item>
-      <el-form-item label="url" prop="url">
-        <el-input style="width:600px;margin-bottom:30px;" v-model="form.url"></el-input>
-      </el-form-item>
-      <el-form-item label="描述" prop="content">
-        <el-input style="width:600px;margin-bottom:30px;" v-model="form.content"></el-input>
-      </el-form-item>
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
-      </el-form-item>
+      <el-button type="primary" style="margin:0 auto;" @click="onSubmit">立即创建</el-button>
     </el-form>
     <!-- 列表 start -->
-    <h3 class="section_title">白名单列表</h3>
+    <h3 class="section_title">用户列表</h3>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="uid" label="账户" width="100"></el-table-column>
-      <el-table-column prop="ip" label="IP" width="100"></el-table-column>
-      <el-table-column prop="url" label="url" width="150"></el-table-column>
-      <el-table-column prop="content" label="描述"></el-table-column>
+      <el-table-column prop="uid" label="用户名" width="100"></el-table-column>
+      <el-table-column prop="ip" label="角色" width="100"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
@@ -52,7 +43,6 @@ export default {
       form: {
         uid: "",
         ip: "",
-        url: "",
         content: ""
       },
       tableData: []
@@ -89,10 +79,10 @@ export default {
             message: "保存成功!"
           });
           _this.form = {
-            uid: "",
-            ip: "",
-            url: "",
-            content: ""
+            id: "",
+            type: "",
+            deturl: "",
+            imgurl: ""
           };
           _this.getList();
         }

@@ -8,6 +8,8 @@
         <el-menu-item index="/transaction"><i class="el-icon-tickets"></i>交易对配置</el-menu-item>
         <el-menu-item index="/blacklist"><i class="el-icon-error"></i>黑名单配置</el-menu-item>
         <el-menu-item index="/whitelist"><i class="el-icon-success"></i>白名单配置</el-menu-item>
+        <el-menu-item index="/user"><i class="el-icon-setting"></i>用户管理</el-menu-item>
+        <el-menu-item index="/check"><i class="el-icon-mobile-phone"></i>APP版本管理</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20" style="height: 100%;overflow: auto;">

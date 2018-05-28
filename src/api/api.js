@@ -8,7 +8,7 @@ const instance = axios.create({
     'Content-Type': 'application/x-www-form-urlencoded',
     'source': 'Android',
     'token': '2F13D3C9597F4309BC2854F26C27CCD7',
-    'uid': '1',
+    'uid': '13',
     'ver': '1.0',
   }
 })

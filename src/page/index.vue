@@ -112,7 +112,6 @@ export default {
       });
       Api.getDAURequest().then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
-          console.log(res.data.data);
           _this.echartsInit(res.data.data);
         }
       }).catch(function(err) {

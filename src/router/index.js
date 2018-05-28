@@ -10,6 +10,8 @@ const banner = r => require.ensure([], () => r(require('@/page/banner')), 'banne
 const transaction = r => require.ensure([], () => r(require('@/page/transaction')), 'transaction');
 const blacklist = r => require.ensure([], () => r(require('@/page/blacklist')), 'blacklist');
 const whitelist = r => require.ensure([], () => r(require('@/page/whitelist')), 'whitelist');
+const user = r => require.ensure([], () => r(require('@/page/user')), 'user');
+const check = r => require.ensure([], () => r(require('@/page/check')), 'check');
 
 const routes = [
 	{
@@ -39,6 +41,14 @@ const routes = [
 			path: '/whitelist',
 			component: whitelist,
 			meta: ['白名单配置'],
+		},{
+			path: '/user',
+			component: user,
+			meta: ['用户管理'],
+		},{
+			path: '/check',
+			component: check,
+			meta: ['APP版本管理'],
 		}]
 	}
 ]
