@@ -16,7 +16,8 @@
       <el-form-item label="描述" prop="content">
         <el-input style="width:600px;margin-bottom:30px;" v-model="form.content"></el-input>
       </el-form-item>
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">立即创建</el-button>
       </el-form-item>
     </el-form>
     <!-- 列表 start -->
