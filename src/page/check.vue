@@ -4,17 +4,20 @@
       <section class="data_section">
         <h3 class="section_title">APP版本管理</h3>
         <el-form ref="form" :model="form" label-width="150px">
-          <el-form-item label="版本号" prop="ver">
-						<el-input style="width:600px;margin-bottom:30px;" v-model="form.ver"></el-input>
+          <el-form-item label="版本号" prop="version">
+						<el-input style="width:600px;margin-bottom:30px;" v-model="form.version"></el-input>
 					</el-form-item>
-          <el-form-item label="是否强制更新" prop="type">
-						<el-input style="width:600px;margin-bottom:30px;" v-model="form.type"></el-input>
+          <el-form-item label="是否强制更新" prop="update_status">
+            <el-select style="width:600px;margin-bottom:30px;" v-model="form.update_status" placeholder="请选择">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
 					</el-form-item>
-          <el-form-item label="客户端" prop="deturl">
-						<el-input style="width:600px;margin-bottom:30px;" v-model="form.deturl"></el-input>
+          <el-form-item label="客户端" prop="client">
+						<el-input style="width:600px;margin-bottom:30px;" v-model="form.client"></el-input>
 					</el-form-item>
-          <el-form-item label="更新说明" prop="imgurl">
-						<el-input style="width:600px;margin-bottom:30px;" v-model="form.imgurl"></el-input>
+          <el-form-item label="更新说明" prop="remark">
+						<el-input style="width:600px;margin-bottom:30px;" v-model="form.remark"></el-input>
 					</el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">立即创建</el-button>
@@ -23,10 +26,10 @@
         <!-- 列表 start -->
         <h3 class="section_title">APP版本列表</h3>
         <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="id" label="版本号" width="150"></el-table-column>
+          <el-table-column prop="version" label="版本号" width="150"></el-table-column>
           <el-table-column prop="type" label="是否强制更新" width="150"></el-table-column>
-          <el-table-column prop="imgurl" label="客户端" width="150"></el-table-column>
-          <el-table-column prop="imgurl" label="更新说明"></el-table-column>
+          <el-table-column prop="client" label="客户端" width="150"></el-table-column>
+          <el-table-column prop="remark" label="更新说明"></el-table-column>
         </el-table>
       </section>
     </div>
@@ -39,11 +42,21 @@ import Api from "../api/api.js";
 export default {
   data() {
     return {
+      options: [{
+        value: '0',
+        label: '不更新'
+      }, {
+        value: '1',
+        label: '选择更新'
+      }, {
+        value: '2',
+        label: '强制更新'
+      }],
       form: {
-        id: "",
-        type: "",
-        deturl: "",
-        imgurl: ""
+        version: "",
+        update_status: "",
+        client: "",
+        remark: ""
       },
       tableData: []
     };
@@ -59,9 +72,9 @@ export default {
   methods: {
     getList() {
       let _this = this;
-      Api.getBannerRequest().then(function(res) {
+      Api.getCheckListRequest().then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
-          _this.tableData = res.data.data.list;
+          _this.tableData = res.data.data;
         }
       }).catch(function(err) {
         console.log(err);
@@ -69,17 +82,17 @@ export default {
     },
     onSubmit() {
       let _this = this;
-      Api.savebannerRequest(this.form).then(function(res) {
+      Api.saveVersionRequest(this.form).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
           _this.$message({
             type: "success",
             message: "保存成功!"
           });
           _this.form = {
-            id: "",
-            type: "",
-            deturl: "",
-            imgurl: ""
+            version: "",
+            update_status: "",
+            client: "",
+            remark: ""
           };
           _this.getList();
         }

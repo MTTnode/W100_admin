@@ -8,7 +8,7 @@ const instance = axios.create({
     'Content-Type': 'application/x-www-form-urlencoded',
     'source': 'Android',
     'token': '2F13D3C9597F4309BC2854F26C27CCD7',
-    'uid': '13',
+    'uid': '12',
     'ver': '1.0',
   }
 })
@@ -56,5 +56,13 @@ export default {
   },
   getDAURequest() {
     return instance.get(APIPATH.getDAU);
+  },
+  getCheckListRequest(param) {
+    return instance.get(APIPATH.checkList, {
+      params: param
+    });
+  },
+  saveVersionRequest(params) {
+    return instance.post(APIPATH.addVersion, qs.stringify(params));
   },
 }

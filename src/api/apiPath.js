@@ -14,4 +14,6 @@ export default {
     addWhite: apiUrl + "/ad/addWhite",    //添加白名单
     delWhite: apiUrl + "/ad/delWhite",    //删除白名单
     getDAU: apiUrl + "/ad/getDAU",    //日活图标数据
+    checkList: apiUrl + "/ad/update/checkList",    //app版本列表
+    addVersion: apiUrl + "/ad/update/addVersion",    //app版本添加
 }
