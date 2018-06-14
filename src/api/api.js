@@ -65,4 +65,9 @@ export default {
   saveVersionRequest(params) {
     return instance.post(APIPATH.addVersion, qs.stringify(params));
   },
+  getOrderListRequest(param) {
+    return instance.get(APIPATH.orderList, {
+      params: param
+    });
+  },
 }

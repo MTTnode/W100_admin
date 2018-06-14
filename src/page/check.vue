@@ -27,9 +27,18 @@
         <h3 class="section_title">APP版本列表</h3>
         <el-table :data="tableData" style="width: 100%">
           <el-table-column prop="version" label="版本号" width="150"></el-table-column>
-          <el-table-column prop="type" label="是否强制更新" width="150"></el-table-column>
+          <el-table-column prop="update_status" label="是否强制更新" width="150">
+            <template slot-scope="scope">
+              <div>{{ scope.row.update_status | formatStr }}</div>
+            </template>
+          </el-table-column>
           <el-table-column prop="client" label="客户端" width="150"></el-table-column>
           <el-table-column prop="remark" label="更新说明"></el-table-column>
+          <!-- <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button @click="delClick(scope.row)" type="text" size="small">修改</el-button>
+            </template>
+          </el-table-column> -->
         </el-table>
       </section>
     </div>
@@ -69,11 +78,23 @@ export default {
       this.getList();
     });
   },
+  filters: {
+    formatStr: function(val){
+      if(val == '0'){
+        return "不更新";
+      }else if(val == '1'){
+        return "选择更新";
+      }else{
+        return "强制更新";
+      }
+    }
+  },
   methods: {
     getList() {
       let _this = this;
       Api.getCheckListRequest().then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
+          // console.log(res.data);
           _this.tableData = res.data.data;
         }
       }).catch(function(err) {

@@ -16,4 +16,5 @@ export default {
     getDAU: apiUrl + "/ad/getDAU",    //日活图标数据
     checkList: apiUrl + "/ad/update/checkList",    //app版本列表
     addVersion: apiUrl + "/ad/update/addVersion",    //app版本添加
+    orderList: apiUrl + "/ad/order/orderList",    //订单列表
 }
