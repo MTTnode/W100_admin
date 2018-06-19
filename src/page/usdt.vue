@@ -181,7 +181,7 @@ export default {
       Api.getOrderListRequest(param).then(function(res) {
           if (res.status == 200 && res.data.code == 0) {
             _this.obj = res.data.data;
-            console.log(_this.obj);
+            // console.log(_this.obj);
           }
       }).catch(function(err) {
         console.log(err);

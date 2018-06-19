@@ -45,7 +45,8 @@ export default {
     },
     submitForm() {
       let _this = this;
-      Api.usrLoginRequest(_this.loginForm).then(function(res) {
+      let param = Object.assign({}, _this.loginForm);
+      Api.usrLoginRequest(param).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
           _this.$store.commit("CHANGEUSER", res.data.data);
           localstore.setValue("usr", res.data.data);
