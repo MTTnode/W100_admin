@@ -10,8 +10,7 @@ const instance = axios.create({
     'source': 'IOS',
     'token': '2F13D3C9597F4309BC2854F26C27CCD7',
     'uid': '-1',
-    'ver': '1.0',
-    'x-forwarded-for': '127.0.0.1'
+    'ver': '1.0'
   }
 })
 
