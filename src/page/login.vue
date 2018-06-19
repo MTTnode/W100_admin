@@ -6,19 +6,15 @@
 		  			<p>W100管理系统</p>
 		  		</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm">
-					<el-form-item prop="username">
-						<el-input v-model="loginForm.username" placeholder="用户名"></el-input>
+					<el-form-item prop="name">
+						<el-input v-model="loginForm.name" placeholder="用户名"></el-input>
 					</el-form-item>
-          <div style="display:flex;">
-            <span style="flex:1;color:#666;cursor:pointer;" @click="getPwd">获取密码</span>
-            <span style="flex:1;color:red;">{{pwdtext}}</span>
-          </div>
 					<el-form-item prop="password">
-						<el-input type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+						<el-input type="password" placeholder="密码" v-model="loginForm.password" @keyup="login($event)"></el-input>
 					</el-form-item>
 					<el-form-item>
-				    	<el-button type="primary" @click="submitForm(loginForm)" class="submit_btn">登陆</el-button>
-				  	</el-form-item>
+            <el-button type="primary" @click="submitForm()" class="submit_btn">登陆</el-button>
+          </el-form-item>
 				</el-form>
 	  		</section>
 	  	</transition>
@@ -26,47 +22,49 @@
 </template>
 
 <script>
-import otplib from 'otplib';
 import localstore from "../utils/localstore.js";
+import Api from "../api/api.js";
 
 export default {
   data() {
     return {
-      pwdtext: '',
-      secret: '',
       loginForm: {
-        username: "",
+        name: "",
         password: ""
       },
       rules: {
-        username: [
-          { required: true, message: "请输入用户名", trigger: "blur" }
-        ],
-        password: [
-          { required: true, message: "请输入密码", trigger: "blur" }
-        ]
+        name: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
     };
   },
   methods: {
-    getPwd() {
-      const secret = otplib.authenticator.generateSecret();
-      const token = otplib.authenticator.generate(secret);
-      this.pwdtext = token;
-      this.secret = secret;
+    login(e) {
+      console.log(e);
+      console.log("login");
     },
-    submitForm(val) {
-      const isValid = otplib.authenticator.check(val.password, this.secret);
-      if(isValid) {
-        this.$message({
-          message: '登陆成功',
-          type: 'success'
-        });
-        localstore.setValue("name", val.username);
-        this.$router.push('index');
-      } else {
-        this.$message.error('登陆失败');
-      }
+    submitForm() {
+      let _this = this;
+      Api.usrLoginRequest(_this.loginForm).then(function(res) {
+        if (res.status == 200 && res.data.code == 0) {
+          _this.$store.commit("CHANGEUSER", res.data.data);
+          localstore.setValue("usr", res.data.data);
+          _this.$message({
+            type: "success",
+            message: "登陆成功!"
+          });
+          _this.loginForm = {
+            name: "",
+            role: null
+          };
+          _this.$router.push("index");
+        } else {
+          _this.$message.error("登陆失败");
+        }
+      }).catch(function(err) {
+        console.log(err);
+        _this.$message.error("登陆失败");
+      });
     }
   }
 };
@@ -88,8 +86,8 @@ export default {
   }
 }
 .form_contianer {
-  .wh(320px, 240px);
-  .ctp(320px, 240px);
+  .wh(320px, 180px);
+  .ctp(320px, 180px);
   padding: 25px;
   border-radius: 5px;
   text-align: center;

@@ -6,9 +6,9 @@ const qs = require('qs')
 const instance = axios.create({
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
-    'source': 'Android',
+    'source': 'IOS',
     'token': '2F13D3C9597F4309BC2854F26C27CCD7',
-    'uid': '12',
+    'uid': '-1',
     'ver': '1.0',
   }
 })
@@ -69,5 +69,17 @@ export default {
     return instance.get(APIPATH.orderList, {
       params: param
     });
+  },
+  getUserListRequest() {
+    return instance.get(APIPATH.userList);
+  },
+  delUserRequest(params) {
+    return instance.post(APIPATH.delUser, qs.stringify(params));
+  },
+  addUserRequest(params) {
+    return axios.post(APIPATH.addUser, params);
+  },
+  usrLoginRequest(params) {
+    return axios.post(APIPATH.usrLogin, params);
   },
 }

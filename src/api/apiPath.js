@@ -17,4 +17,8 @@ export default {
     checkList: apiUrl + "/ad/update/checkList",    //app版本列表
     addVersion: apiUrl + "/ad/update/addVersion",    //app版本添加
     orderList: apiUrl + "/ad/order/orderList",    //订单列表
+    userList: apiUrl + "/ad/role/userList",    //用户列表
+    addUser: apiUrl + "/ad/role/addUser",    //添加用户
+    delUser: apiUrl + "/ad/role/delUser",    //删除用户
+    usrLogin: apiUrl + "/ad/role/usrLogin",    //用户登陆
 }
