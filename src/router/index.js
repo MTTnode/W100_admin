@@ -12,6 +12,7 @@ const blacklist = r => require.ensure([], () => r(require('@/page/blacklist')), 
 const whitelist = r => require.ensure([], () => r(require('@/page/whitelist')), 'whitelist');
 const user = r => require.ensure([], () => r(require('@/page/user')), 'user');
 const usdt = r => require.ensure([], () => r(require('@/page/usdt')), 'usdt');
+const payment = r => require.ensure([], () => r(require('@/page/payment')), 'payment');
 const check = r => require.ensure([], () => r(require('@/page/check')), 'check');
 
 const routes = [
@@ -50,6 +51,10 @@ const routes = [
 			path: '/usdt',
 			component: usdt,
 			meta: ['订单管理'],
+		},{
+			path: '/payment',
+			component: payment,
+			meta: ['Payment订单管理'],
 		},{
 			path: '/check',
 			component: check,

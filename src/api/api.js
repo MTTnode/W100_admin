@@ -71,6 +71,11 @@ export default {
       params: param
     });
   },
+  getPaymentOrderListRequest(param) {
+    return instance.get(APIPATH.paymentOrderList, {
+      params: param
+    });
+  },
   getUserListRequest() {
     return instance.get(APIPATH.userList);
   },
