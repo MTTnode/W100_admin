@@ -94,21 +94,9 @@ export default {
           label: "部分支付"
         },
         {
-          value: "3",
-          label: "足额待确认"
-        },
-        {
           value: "10",
           label: "支付完成"
         },
-        {
-          value: "20",
-          label: "主动取消"
-        },
-        {
-          value: "21",
-          label: "被动取消"
-        }
       ],
       value: "",
       obj: {}
@@ -128,14 +116,8 @@ export default {
         return "等待支付";
       }else if(val == '2'){
         return "部分支付";
-      }else if(val == '3'){
-        return "足额待确认";
       }else if(val == '10'){
         return "支付完成";
-      }else if(val == '20'){
-        return "主动取消";
-      }else if(val == '21'){
-        return "被动取消";
       }else{
         return "-";
       }
