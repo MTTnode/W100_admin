@@ -101,6 +101,10 @@ export default {
         console.log(err);
       });
     },
+    handleCurrentChange(val) {
+      this.curPage = val - 1;
+      this.getList();
+    },
     delClick(val) {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
         confirmButtonText: "确定",

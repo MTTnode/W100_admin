@@ -3,9 +3,16 @@
       <el-breadcrumb separator="/">
         <el-breadcrumb-item v-for="(item, key) in $route.meta" :key="key">{{item}}</el-breadcrumb-item>
       </el-breadcrumb>
-      <div style="height:36px;">
-        <img src="../assets/img/default.jpg" class="avator">
-        <span class="user">{{user}}</span>
+      <div style="height:36px;margin-right:30px;">
+        <span class="el-dropdown-link">{{user}}</span>
+        <!-- <el-dropdown>
+          <span class="el-dropdown-link">
+            {{user}}<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>退出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown> -->
       </div>
     </div>
 </template>

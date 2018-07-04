@@ -40,12 +40,12 @@ export default {
   mounted(){
     this.$nextTick(()=>{
       let res = localstore.getValue("usr");
-      let obj = this.$store.state.user;
-      res = JSON.parse(res);
+      // let obj = this.$store.state.user;
+      // res = JSON.parse(res);
       // console.log(res.role);
       if(res){
-        this.role = res.role;
-        console.log('登陆用户！');
+        this.role = res;
+        // console.log('登陆用户！');
       }else{
         this.$router.push('/');
       }

@@ -26,9 +26,10 @@
           <div>{{ scope.row.role | formatStr }}</div>
         </template>
       </el-table-column>
-      <el-table-column prop="password" label="密码" width="200"></el-table-column>
+      <!-- <el-table-column prop="password" label="密码" width="200"></el-table-column> -->
       <el-table-column label="操作">
         <template slot-scope="scope">
+          <el-button @click="resetClick(scope.row)" type="text" size="small">重置</el-button>
           <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
         </template>
       </el-table-column>
@@ -39,6 +40,7 @@
 
 <script>
 import headTop from "../components/headTop";
+import util from "../utils/utils.js";
 import Api from "../api/api.js";
 
 export default {
@@ -88,6 +90,10 @@ export default {
     },
     onSubmit() {
       let _this = this;
+      if(!util.regEmail.test(_this.form.name)){
+        _this.$message.error("用户信息不合法！");
+        return;
+      }
       Api.addUserRequest(_this.form).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
           _this.$message({
@@ -127,6 +133,23 @@ export default {
           type: "info",
           message: "已取消删除"
         });
+      });
+    },
+    resetClick(val) {
+      let _this = this;
+      Api.resetUserRequest({
+        name: val.name,
+        type: "reset"
+      }).then(function(res) {
+        if (res.status == 200 && res.data.code == 0) {
+          _this.$message({
+            type: "success",
+            message: "重置成功!"
+          });
+          _this.getList();
+        }
+      }).catch(function(err) {
+        console.log(err);
       });
     }
   }

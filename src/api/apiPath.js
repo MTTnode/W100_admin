@@ -22,4 +22,5 @@ export default {
     addUser: apiUrl + "/ad/role/addUser",    //添加用户
     delUser: apiUrl + "/ad/role/delUser",    //删除用户
     usrLogin: apiUrl + "/ad/role/usrLogin",    //用户登陆
+    resetUser: apiUrl + "/ad/role/resetUser",    //用户登陆
 }

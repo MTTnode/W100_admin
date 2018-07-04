@@ -6,11 +6,11 @@ const qs = require('qs')
 
 const instance = axios.create({
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'source': 'IOS',
-    'token': '2F13D3C9597F4309BC2854F26C27CCD7',
+    'source': 'admin',
+    'token': 'token',
     'uid': '-1',
-    'ver': '1.0'
+    'ver': '2.0.0',
+    'x-forwarded-for': '127.0.0.1'
   }
 })
 
@@ -83,10 +83,16 @@ export default {
     return instance.post(APIPATH.delUser, qs.stringify(params));
   },
   addUserRequest(params) {
-    return axios.post(APIPATH.addUser, params);
+    return instance.post(APIPATH.addUser, params);
   },
   usrLoginRequest(params) {
     params.password = CryptoJS.AES.encrypt(params.password, 'weex').toString();
     return instance.post(APIPATH.usrLogin, qs.stringify(params));
+  },
+  resetUserRequest(params) {
+    if(params.type == "setpwd"){
+      params.password = CryptoJS.AES.encrypt(params.password, 'weex').toString();
+    }
+    return instance.post(APIPATH.resetUser, params);
   },
 }
