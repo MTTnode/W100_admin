@@ -96,9 +96,10 @@ export default {
                 role: null
               };
               _this.$router.push("index");
-            }
-            if (res.data.code == -2) {
+            }else if (res.data.code == -2) {
               _this.dialogFormVisible = true;
+            }else{
+              _this.$message.error("登陆失败");
             }
           } else {
             _this.$message.error("登陆失败");

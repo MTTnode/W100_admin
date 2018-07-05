@@ -29,8 +29,10 @@
       <!-- <el-table-column prop="password" label="密码" width="200"></el-table-column> -->
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="resetClick(scope.row)" type="text" size="small">重置</el-button>
-          <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+          <div v-if="scope.row.name != 'customer_service@bada-soft.com'">
+            <el-button @click="resetClick(scope.row)" type="text" size="small">重置</el-button>
+            <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
+          </div>
         </template>
       </el-table-column>
     </el-table>
