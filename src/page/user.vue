@@ -8,7 +8,7 @@
         <el-input style="width:600px;" v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item>
-        <span style="display:block;color:#606266;"><em style="color:red;margin-right: 5px;">*</em>用户名必须为公司内部企业邮箱（bada-soft.com或者mingtaotek.com)</span>
+        <span style="display:block;color:#606266;"><em style="color:red;margin-right: 5px;">*</em>用户名必须为公司内部企业邮箱（bada-soft.com,mail.weex.com或者mingtaotek.com)</span>
       </el-form-item>
       <el-form-item label="角色" prop="role">
         <el-select style="width:600px;margin-bottom:30px;" v-model="form.role" placeholder="请选择">
