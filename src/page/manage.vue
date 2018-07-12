@@ -6,7 +6,7 @@
         <el-menu-item index="/index"><i class="el-icon-news"></i>数据统计</el-menu-item>
         <el-menu-item index="/banner" v-if="role == 0"><i class="el-icon-menu"></i>banner配置</el-menu-item>
         <el-menu-item index="/transaction" v-if="role == 0"><i class="el-icon-tickets"></i>交易对配置</el-menu-item>
-        <el-menu-item index="/blacklist" v-if="role == 0"><i class="el-icon-error"></i>黑名单配置</el-menu-item>
+        <el-menu-item index="/blacklist"><i class="el-icon-error"></i>黑名单配置</el-menu-item>
         <el-menu-item index="/whitelist" v-if="role == 0"><i class="el-icon-success"></i>白名单配置</el-menu-item>
         <el-menu-item index="/user" v-if="role == 0"><i class="el-icon-setting"></i>用户管理</el-menu-item>
         <el-menu-item index="/usdt"><i class="el-icon-goods"></i>USDT订单管理</el-menu-item>

@@ -47,6 +47,21 @@
       </el-row>
     </el-form>
     
+    <!-- 统计数据  start -->
+    <el-row style="margin:30px 0;">
+      <el-col :span="6">
+        <div>订单数量:  {{ obj.total }}</div>
+      </el-col>
+      <el-col :span="6">
+        <div>订单金额（￥）:  {{ obj.price }}</div>
+      </el-col>
+      <el-col :span="6">
+        <div>支付完成（￥）:  {{ obj.account_paid }}</div>
+      </el-col>
+      <el-col :span="6">
+        <div>未支付金额（￥）:  {{ obj.unpaid }}</div>
+      </el-col>
+    </el-row>
     <!-- 列表 start -->
     <el-table :data="obj.list" style="width: 100%">
       <el-table-column type="index" label="序号" width="50"></el-table-column>
@@ -62,9 +77,22 @@
             <div>{{ scope.row.order_status | formatStr }}</div>
         </template>
       </el-table-column>
-      <el-table-column prop="amount" label="订单金额" width="150"></el-table-column>
-      <el-table-column prop="actual_amount" label="实付金额" width="150"></el-table-column>
-      <el-table-column prop="actual_amount_usd" label="实付美元" width="150"></el-table-column>
+      <el-table-column prop="amount" label="订单金额（￥）" width="150"></el-table-column>
+      <el-table-column label="实付金额（￥）" width="150">
+        <template slot-scope="scope">
+            <div>{{ scope.row.actual_amount | format_dora }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column label="实付美元（$）" width="150">
+        <template slot-scope="scope">
+            <div>{{ scope.row.actual_amount_usd | format_dora }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column label="手续费（￥）" width="150">
+        <template slot-scope="scope">
+            <div>{{ scope.row.poundage | format_dora }}</div>
+        </template>
+      </el-table-column>
       <el-table-column prop="exchange_rate" label="汇率" width="150"></el-table-column>
 
     </el-table>
@@ -124,6 +152,13 @@ export default {
     },
     formatTime: function(str) {
       return moment(new Date(str)).format("YYYY-MM-DD HH:mm:ss");
+    },
+    format_dora: function(val) {
+      if(!val){
+        return "-";
+      }else{
+        return val;
+      }
     }
   },
   methods: {
