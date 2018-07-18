@@ -12,6 +12,7 @@
         <el-menu-item index="/usdt"><i class="el-icon-goods"></i>USDT订单管理</el-menu-item>
         <el-menu-item index="/payment"><i class="el-icon-goods"></i>Payment订单管理</el-menu-item>
         <el-menu-item index="/check" v-if="role == 0"><i class="el-icon-mobile-phone"></i>APP版本管理</el-menu-item>
+        <el-menu-item index="/paymanager"><i class="el-icon-goods"></i>支付平台管理</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20" style="height: 100%;overflow: auto;">

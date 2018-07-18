@@ -95,4 +95,14 @@ export default {
     }
     return instance.post(APIPATH.resetUser, params);
   },
+  getPaymentSwitchlistRequest(param) {
+    return instance.get(APIPATH.paymentSwitch, {
+      params: param
+    });
+  },
+  setPaymentSwitchRequest(param) {
+    return instance.get(APIPATH.setPaymentSwitch, {
+      params: param
+    });
+  },
 }
