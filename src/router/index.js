@@ -11,6 +11,7 @@ const transaction = r => require.ensure([], () => r(require('@/page/transaction'
 const blacklist = r => require.ensure([], () => r(require('@/page/blacklist')), 'blacklist');
 const whitelist = r => require.ensure([], () => r(require('@/page/whitelist')), 'whitelist');
 const user = r => require.ensure([], () => r(require('@/page/user')), 'user');
+const role = r => require.ensure([], () => r(require('@/page/role')), 'role');
 const usdt = r => require.ensure([], () => r(require('@/page/usdt')), 'usdt');
 const payment = r => require.ensure([], () => r(require('@/page/payment')), 'payment');
 const check = r => require.ensure([], () => r(require('@/page/check')), 'check');
@@ -47,6 +48,10 @@ const routes = [
 			path: '/user',
 			component: user,
 			meta: ['用户管理'],
+		},{
+			path: '/role',
+			component: role,
+			meta: ['角色管理'],
 		},{
 			path: '/usdt',
 			component: usdt,
