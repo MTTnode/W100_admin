@@ -25,8 +25,5 @@ export default {
     resetUser: apiUrl + "/ad/role/resetUser",    //用户登陆
     paymentSwitch: apiUrl + "/ad/payment/manager/getSwitch",    //获取支付开关信息
     setPaymentSwitch: apiUrl + "/ad/payment/manager/setSwitch",   //修改支付开关信息
-<<<<<<< HEAD
     updateUser: apiUrl + "/ad/role/updateUser",   //修改用户信息
-=======
->>>>>>> 2520c9dc8924adf6a31d4a83fa1c263c60b1347c
 }
