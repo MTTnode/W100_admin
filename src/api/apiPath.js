@@ -23,4 +23,7 @@ export default {
     delUser: apiUrl + "/ad/role/delUser",    //删除用户
     usrLogin: apiUrl + "/ad/role/usrLogin",    //用户登陆
     resetUser: apiUrl + "/ad/role/resetUser",    //用户登陆
+    paymentSwitch: apiUrl + "/ad/payment/manager/getSwitch",    //获取支付开关信息
+    setPaymentSwitch: apiUrl + "/ad/payment/manager/setSwitch",   //修改支付开关信息
+    updateUser: apiUrl + "/ad/role/updateUser",   //修改用户信息
 }

@@ -15,6 +15,7 @@ const role = r => require.ensure([], () => r(require('@/page/role')), 'role');
 const usdt = r => require.ensure([], () => r(require('@/page/usdt')), 'usdt');
 const payment = r => require.ensure([], () => r(require('@/page/payment')), 'payment');
 const check = r => require.ensure([], () => r(require('@/page/check')), 'check');
+const paymanager = r => require.ensure([], () => r(require('@/page/paymanager')), 'paymanager');
 
 const routes = [
 	{
@@ -64,6 +65,10 @@ const routes = [
 			path: '/check',
 			component: check,
 			meta: ['APP版本管理'],
+		},{
+			path: '/paymanager',
+			component: paymanager,
+			meta: ['支付平台管理'],
 		}]
 	}
 ]

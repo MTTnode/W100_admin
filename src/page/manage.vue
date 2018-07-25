@@ -9,10 +9,11 @@
         <el-menu-item index="/blacklist"><i class="el-icon-error"></i>黑名单配置</el-menu-item>
         <el-menu-item index="/whitelist" v-if="role == 0"><i class="el-icon-success"></i>白名单配置</el-menu-item>
         <el-menu-item index="/user" v-if="role == 0"><i class="el-icon-setting"></i>用户管理</el-menu-item>
-        <el-menu-item index="/role" v-if="role == 0"><i class="el-icon-setting"></i>角色管理</el-menu-item>
+        <!-- <el-menu-item index="/role" v-if="role == 0"><i class="el-icon-setting"></i>角色管理</el-menu-item> -->
         <el-menu-item index="/usdt"><i class="el-icon-goods"></i>USDT订单管理</el-menu-item>
         <el-menu-item index="/payment"><i class="el-icon-goods"></i>Payment订单管理</el-menu-item>
         <el-menu-item index="/check" v-if="role == 0"><i class="el-icon-mobile-phone"></i>APP版本管理</el-menu-item>
+        <el-menu-item index="/paymanager"><i class="el-icon-goods"></i>支付平台管理</el-menu-item>
       </el-menu>
     </el-col>
     <el-col :span="20" style="height: 100%;overflow: auto;">
