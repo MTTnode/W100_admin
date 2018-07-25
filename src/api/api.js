@@ -105,7 +105,10 @@ export default {
       params: param
     });
   },
+<<<<<<< HEAD
   updateUserRequest(params) {
     return instance.post(APIPATH.updateUser, params);
   },
+=======
+>>>>>>> 2520c9dc8924adf6a31d4a83fa1c263c60b1347c
 }

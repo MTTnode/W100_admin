@@ -2,26 +2,23 @@
 <div>
   <head-top></head-top>
   <section class="data_section">
-    <h3 class="section_title">添加用户</h3>
+    <h3 class="section_title">添加角色</h3>
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="用户名" prop="name">
-        <el-input style="width:600px;" v-model="form.name" :disabled="type=='edit'"></el-input>
+        <el-input style="width:600px;" v-model="form.name"></el-input>
       </el-form-item>
-      <el-form-item>
-        <span style="display:block;color:#606266;"><em style="color:red;margin-right: 5px;">*</em>用户名必须为公司内部企业邮箱（bada-soft.com,mail.weex.com或者mingtaotek.com)</span>
-      </el-form-item>
-      <el-form-item label="角色" prop="role">
-        <el-select style="width:600px;margin-bottom:30px;" v-model="form.role" placeholder="请选择">
+      <el-form-item label="" prop="role">
+        <!-- <el-select style="width:600px;margin-bottom:30px;" v-model="form.role" placeholder="请选择">
           <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
           </el-option>
-        </el-select>
+        </el-select> -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="margin:0 auto;" @click="onSubmit">立即创建</el-button>
       </el-form-item>
     </el-form>
     <!-- 列表 start -->
-    <h3 class="section_title">用户列表</h3>
+    <h3 class="section_title">角色列表</h3>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column prop="name" label="用户名" width="200"></el-table-column>
       <el-table-column label="角色" width="100">
@@ -29,11 +26,9 @@
           <div>{{ scope.row.role | formatStr }}</div>
         </template>
       </el-table-column>
-      <!-- <el-table-column prop="password" label="密码" width="200"></el-table-column> -->
       <el-table-column label="操作">
         <template slot-scope="scope">
           <div v-if="scope.row.name != 'customer_service@bada-soft.com'">
-            <el-button @click="editClick(scope.row)" type="text" size="small">修改</el-button>
             <el-button @click="resetClick(scope.row)" type="text" size="small">重置</el-button>
             <el-button @click="delClick(scope.row)" type="text" size="small">删除</el-button>
           </div>
@@ -52,7 +47,6 @@ import Api from "../api/api.js";
 export default {
   data() {
     return {
-      type: 'new',
       options: [{
         value: 0,
         label: '管理员'
@@ -101,25 +95,21 @@ export default {
         _this.$message.error("用户信息不合法！");
         return;
       }
-      if(_this.type == 'new'){
-        Api.addUserRequest(_this.form).then(function(res) {
+      Api.addUserRequest(_this.form).then(function(res) {
         if (res.status == 200 && res.data.code == 0) {
-            _this.$message({
-              type: "success",
-              message: "保存成功!"
-            });
-            _this.form = {
-              name: "",
-              role: null
-            };
-            _this.getList();
-          }
-        }).catch(function(err) {
-          console.log(err);
-        });
-      }else if(_this.type == 'edit'){
-        _this.editEvent();
-      }
+          _this.$message({
+            type: "success",
+            message: "保存成功!"
+          });
+          _this.form = {
+            name: "",
+            role: null
+          };
+          _this.getList();
+        }
+      }).catch(function(err) {
+        console.log(err);
+      });
     },
     delClick(val) {
       this.$confirm("此操作将永久删除, 是否继续?", "提示", {
@@ -162,33 +152,6 @@ export default {
       }).catch(function(err) {
         console.log(err);
       });
-    },
-    editClick(val) {
-      this.type = 'edit';
-      this.form.name = val.name;
-      this.form.role = val.role;
-    },
-    editEvent() {
-      let _this = this;
-      Api.updateUserRequest({
-        name: _this.form.name,
-        role: _this.form.role
-      }).then(function(res) {
-        if (res.status == 200 && res.data.code == 0) {
-           _this.$message({
-              type: "success",
-              message: "保存成功!"
-            });
-            _this.form = {
-              name: "",
-              role: null
-            };
-            _this.type = 'new';
-            _this.getList();
-        }
-      }).catch(function(err) {
-        console.log(err);
-      });
     }
   }
 };
@@ -196,6 +159,17 @@ export default {
 
 <style lang="less">
 @import "../style/mixin";
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
+.clearfix:before,.clearfix:after{
+  display: table;
+  content: " ";
+  clear: both;
+}
 .data_section {
     padding: 20px;
     margin-bottom: 40px;

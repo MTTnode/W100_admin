@@ -52,27 +52,27 @@
         <div>订单数量:  {{ obj.total }}</div>
       </el-col>
       <el-col :span="6">
-        <div>订单金额:  {{ obj.price }}</div>
+        <div>订单金额(USD):  {{ obj.price }}</div>
       </el-col>
       <el-col :span="6">
-        <div>支付完成:  {{ obj.account_paid }}</div>
+        <div>支付完成（USDT）:  {{ obj.account_paid }}</div>
       </el-col>
       <el-col :span="6">
-        <div>足额待确认:  {{ obj.confirmedpaid }}</div>
+        <div>足额待确认（USDT）:  {{ obj.confirmedpaid }}</div>
       </el-col>
     </el-row>
     <el-row style="margin:30px 0;">
       <el-col :span="6">
-        <div>部分支付:  {{ obj.partpaid }}</div>
+        <div>部分支付（USD）:  {{ obj.partpaid }}</div>
       </el-col>
       <el-col :span="6">
-        <div>等待支付:  {{ obj.unpaid }}</div>
+        <div>等待支付（USDT）:  {{ obj.unpaid }}</div>
       </el-col>
       <el-col :span="6">
-        <div>主动取消:  {{ obj.revoke }}</div>
+        <div>主动取消（USDT）:  {{ obj.revoke }}</div>
       </el-col>
       <el-col :span="6">
-        <div>被动取消:  {{ obj.revoke1 }}</div>
+        <div>被动取消（USDT）:  {{ obj.revoke1 }}</div>
       </el-col>
     </el-row>
     <!-- 列表 start -->
@@ -85,14 +85,15 @@
       </el-table-column>
       <el-table-column prop="uid" label="用户" width="80"></el-table-column>
       <el-table-column prop="order_number" label="订单编号" width="350"></el-table-column>
+      <el-table-column prop="_id" label="订单号" width="250"></el-table-column>
       <el-table-column label="订单状态" width="100">
         <template slot-scope="scope">
             <div>{{ scope.row.order_status | formatStr }}</div>
         </template>
       </el-table-column>
-      <el-table-column prop="price" label="订单金额" width="150"></el-table-column>
-      <el-table-column prop="coin_amount" label="应付金额" width="150"></el-table-column>
-      <el-table-column label="实付金额">
+      <el-table-column prop="price" label="订单金额（USD）" width="150"></el-table-column>
+      <el-table-column prop="coin_amount" label="应付金额（USDT）" width="150"></el-table-column>
+      <el-table-column label="实付金额（USDT）">
         <template slot-scope="scope">
             <div>待确认：{{ scope.row.coin_paid }}</div>
             <div>已确认：{{ scope.row.coin_cfmed }}</div>
@@ -190,7 +191,7 @@ export default {
     searchClick() {
       let params = {};
       if(this.order){
-        params.order_number = this.order;
+        params._id = this.order;
       }
       if(this.user){
         params.user = this.user;

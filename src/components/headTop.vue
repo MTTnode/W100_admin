@@ -4,15 +4,15 @@
         <el-breadcrumb-item v-for="(item, key) in $route.meta" :key="key">{{item}}</el-breadcrumb-item>
       </el-breadcrumb>
       <div style="height:36px;margin-right:30px;">
-        <span class="el-dropdown-link">{{user}}</span>
-        <!-- <el-dropdown>
+        <!-- <span class="el-dropdown-link">{{user}}</span> -->
+        <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
             {{user}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item command="singout">退出</el-dropdown-item>
           </el-dropdown-menu>
-        </el-dropdown> -->
+        </el-dropdown>
       </div>
     </div>
 </template>
@@ -33,9 +33,9 @@ export default {
   },
   methods: {
     async handleCommand(command) {
-      if (command == "home") {
-        this.$router.push("/index");
-      } else if (command == "userInfo") {
+      if (command == "singout") {
+        this.$router.push("/");
+      } else {
         this.$message("程序员正在努力开发");
       }
     }
